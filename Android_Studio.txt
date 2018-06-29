@@ -1,0 +1,137 @@
+ 
+ADB
+
+1.path:
+
+C:\Users\supriya.shetty\AppData\Local\Android\sdk\platform-tools\adb.exe
+
+2.commands
+
+a. $ adb devices
+b. $ adb help
+c. $ adb version
+d. $ adb connect <device-ip-address>
+e. $ adb start-server
+f. $ adb kill-server
+
+	When more emulator/device is connected, directing command to specific device
+
+g. $ adb -s <serialNumber> <command> 		// get serial number of device using adb devices Ex: 119.23.1.2:5556 => 5556 is serial number assigned to that device
+	
+	Example: adb -s emulator-5556 install helloWorld.apk
+
+h. $ adb -d install<path to apk>
+
+	Example: adb install D:\Android_studio_workspace\Roughwork\app\build\outputs\apk\app-debug.apk
+
+i. $ adb pull <remote> <local>		// from device(remote) to computer(local)
+j. $ adb push <local> <remote>		// from cmputer(local) to device(remote)
+
+
+
+LAYOUT: 
+
+There are four generalized sizes: small, normal, large, xlarge, hence create different layouts under res, so it wil be compatible with different device screens':
+
+1.small (layout-small)
+2.normal(layout-normla
+3.large (layout-large
+4.xlarge (layout-xlarge)
+
+DRAWABLE
+
+There are four generalized densities:
+
+1. low (ldpi)
+2. medium (mdpi) 
+3. high (hdpi)
+4. extra high (xhdpi)
+
+Save them under: drawable-ldpi, drawable-mdpi, drawable-hdpi,drawable-xhdpi
+
+LANGUAGES
+
+Save different language words under res/values like this:
+       
+	values/
+           strings.xml
+        values-es/
+           strings.xml
+        values-fr/
+           strings.xml
+
+PLATFORM VERSION
+
+To support different devices based on the version of that device set like this:
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" ... >
+    <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="15" />
+    ...
+</manifest>
+
+=> only the device with sdk version above "4" can install the app, with the targetted sdk version considering which the app is designed & tested is "15". 
+
+
+Input controls:
+
+1.button 
+	* Button type: button with text, image button, button with text and image(android:text=" ", android:drawableleft=" ")
+	* Responding to click : onClick, onClickListener()
+	* Styling button: background, style, theme, using selector(changing button image/olor when pressed)
+
+2.Plain text(edit text)
+	* input type: for different keyboards
+	* imeoptions: to search/send/done/go buttons in keyboard, following which next action occurs
+ 	* responding to action: using setOnEditorActionListener() for every imeoptions.
+	* imeactionlabel: for landscape view button
+	* Autocomplete textview: for suggestions from database/array/predefined stored data.
+
+3.Checkbox
+	* boolean i.e either true/false states
+	* respond to check by onCheckboxClicked().
+
+4.Radio button
+	* to select any one option, radio group:to select any one radio option from many.
+	* response by onRadioButtonClicked()
+
+5.Toggle button & Switch: same as above
+
+6.Spinner
+	* a quick way to select one value from a set, basically dropdown menu from database/adapter data usng array/ dynamic database etc
+	* response to selection by: implementing the AdapterView.OnItemSelectedListener, and onItemSelected() method.
+
+7.Picker
+	* 
+	* 
+	*
+
+# set.onclicklistener() - for a click on button using onclick(View view)
+# set.onlongclicklistener() - for a long click interaction using onLongclick(View view)
+
+Activity Lifecycle
+
+1. onCreate(): callback method created when a activity is started.
+
+2. onStart(): this is when activity is just initiated and visible.
+
+3. onResume(): immediately after onStart, running and visible on foreground.
+
+4. onPause(): save the state,runs in background, pauses everything when the UI of app is interrupted/obstructed. Never save data during onPause().
+
+5. onStop():  when switched to other app, UI obstruction and app stops running.
+
+6. onDestroy(): app is killed.
+
+* Use onSaveInstanceState() and onRestoreInstanceState() to save additional state information for your activity.
+
+
+FRAGMENT:
+
+* A Fragment represents a portion of user interface in an Activity.
+* You can combine multiple fragments in a single activity to build a multi-pane UI and reuse a fragment in multiple activities
+* So mainly, fragments are some small section kind of sub activity running in main activity, affected by activity lifecycle.
+
+Creation:
+It is just like activity creation with onCreate(), onStart(), onResume(), onPause(), onDestroy().
+
+
